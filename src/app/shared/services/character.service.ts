@@ -48,9 +48,17 @@ export class CharacterService {
 
   }
 
-  getCharacterByURL(url){
+  getCharacterByURL(url):Observable<Character>{
     
-    return this.http.get<any>(url);
+    return this.http.get<Character>(url);
+  }
+
+  getCharacterbyId(id):Observable<Character>{
+
+    let getId= 'https://rickandmortyapi.com/api/character/' + id;
+
+    return this.http.get<Character>(getId);
+
   }
 
 

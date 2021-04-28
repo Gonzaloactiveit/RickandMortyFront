@@ -12,6 +12,7 @@ import { TablaListaComponent } from './tabla-lista/tabla-lista.component';
 import { MatTableModule } from '@angular/material/table';
 import { LocationComponent } from './location/location.component';
 import {MatCardModule} from '@angular/material/card';
+import { CharacterInfoComponent } from './character-info/character-info.component';
 // import {MatPaginatorModule} from '@angular/material/paginator';  
 
 
@@ -22,7 +23,7 @@ const myComponents = [
 ];
 
 @NgModule({
-  declarations: [...myComponents, CharacterSpeciesComponent, TablaListaComponent, LocationComponent],
+  declarations: [...myComponents, CharacterSpeciesComponent, TablaListaComponent, LocationComponent, CharacterInfoComponent],
   imports: [MatCardModule, MatTableModule, CommonModule, RouterModule, InfiniteScrollModule],
   exports: [...myComponents],
 })

@@ -8,9 +8,7 @@
       <mat-card-subtitle>{{loc.type}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>
-        {{loc.residents}}
-      </p>
+      <ul><li *ngFor="let lista of listaPersonajes">{{lista}}</li></ul>
     </mat-card-content>
   </mat-card>
 </div>

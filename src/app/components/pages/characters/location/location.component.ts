@@ -19,6 +19,12 @@ import { Episode } from '@app/shared/interfaces/episode.interface';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@app/shared/interfaces/location.interface';
 
+export interface Lista{
+
+  id: number;
+  name:String;
+
+}
 
 @Component({
   selector: 'app-location',
@@ -33,10 +39,18 @@ export class LocationComponent implements OnInit {
   private router: Router) { }
 
   location: Location[] = [];
-
+  listaPersonajes: Lista[] = [];
+  
   ngOnInit(): void {
     this.characterSvc.getLocation().subscribe(data =>{
       this.location = data.results;
+      // data.results.forEach((residents) =>{
+      //   this.characterSvc.getCharacterByURL(residents).subscribe(per =>{
+      //     console.log(per);
+      //     // this.listaPersonajes.push({per.id, char.name});
+      //     // console.log(this.listaPersonajes);
+      //   });
+      // })
     })
   }
 

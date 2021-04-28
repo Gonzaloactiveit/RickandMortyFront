@@ -43,6 +43,13 @@ const routes: Routes = [
         './components/pages/characters/location/location.module'
       ).then((m) => m.LocationModule),
   },
+  {
+  path: 'character-info/:id',
+    loadChildren: () =>
+      import(
+        './components/pages/characters/character-info/character-info.module'
+      ).then((m) => m.CharacterInfoModule),
+  },
 ];
 
 @NgModule({

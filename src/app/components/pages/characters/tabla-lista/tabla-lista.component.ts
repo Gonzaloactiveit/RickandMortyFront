@@ -18,31 +18,14 @@ import { Observable } from 'rxjs';
 import { Episode } from '@app/shared/interfaces/episode.interface';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
+export interface Lista{
 
+  id: number;
+  name:String;
 
+}
 
-// type RequestInfo = {
-//   next: string;
-// };
 @Component({
   selector: 'app-tabla-lista',
   templateUrl: './tabla-lista.component.html',
@@ -57,26 +40,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 })
 export class TablaListaComponent implements OnInit {
-  // characters: Character[] = [];
-
-  // displayedColumns: string[] = ['id'];
-  // dataSource = this.characters;
-
   
+  episode: Episode[] = [];
+  listaCharacter: Lista[] = [];
 
-  // info: RequestInfo = {
-  //   next: null,
-  // };
-
-  showGoUpButton = false;
-
-  private pageNum = 1;
-
-  private query: string;
-
-  private hideScrollHeight = 200;
-
-  private showScrollHeight = 500;
+  dataSource = new MatTableDataSource<Episode>(this.episode);
 
   constructor(
     @Inject(DOCUMENT) private document:Document,
@@ -87,11 +55,7 @@ export class TablaListaComponent implements OnInit {
     
   }
 
-  episode: Episode[] = [];
-  nameCharacter: String[] = [];
-
-
-  dataSource = new MatTableDataSource<Episode>(this.episode)
+  
   
 
   ngOnInit(): void {
@@ -104,17 +68,15 @@ export class TablaListaComponent implements OnInit {
 
   onClick(ep){
 
-    
+    this.listaCharacter = [];
 
       ep.characters.forEach((character) =>{
-        console.log(character);
         this.characterSvc.getCharacterByURL(character).subscribe(char =>{
-          this.nameCharacter.push(char.name);
-          console.log(ep.id,this.nameCharacter);
+          this.listaCharacter.push({id: char.id, name: char.name});
         });
+        
       });
-
-    console.log(ep);
+      
   }
 
 
